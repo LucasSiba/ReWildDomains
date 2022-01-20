@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+test/*.t
+test/*.t.fail
+test/*.t.pass
