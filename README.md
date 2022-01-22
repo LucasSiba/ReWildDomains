@@ -7,5 +7,5 @@ There is an additional special case where a trailing ```*``` becomes a greedy ma
 
 See the unit tests for clarifying examples.
 
-Q: Why not just use a regrex engine?
+#### Q: Why not just use a regrex engine?
 A: The hope is that this will be simpler, lower overhead, and faster.
