@@ -14,11 +14,11 @@ void
 wd_match_test(const char *pattern, const char *domain, int expecation)
 {
     if (wd_match(pattern, domain) != expecation) {
-        printf("\033[31m" "FAIL: Expected pattern '%s' to %s with domain '%s'\n",
+        printf("\033[31m" "FAIL: Expected pattern '%s' to %s with domain '%s'" "\033[0m"" \n",
                pattern, match_to_str(expecation), domain);
-        return_code = 1;
+        return_code++;
     } else {
-        printf("\033[0m" "PASS: Pattern '%s' %s with domain '%s'\n",
+        printf("PASS: Pattern '%s' %s with domain '%s'\n",
                pattern, match_to_str(expecation), domain);
     }
 }
@@ -99,5 +99,9 @@ main(void)
     wd_match_test("www.google.co*",  "www.google.com", WD_MATCH);
     wd_match_test("www.google.com*", "www.google.com", WD_NO_MATCH); // ***
 
+    if (return_code) {
+        printf("\033[31m" "Failure count: %d\n", return_code);
+    }
+    printf("Done\n");
     return return_code;
 }
