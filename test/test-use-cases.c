@@ -33,6 +33,30 @@ main(void)
     wd_match_test("www.*.com",      "www.google.com", WD_MATCH);
     wd_match_test("*.google.*",     "www.google.com", WD_MATCH);
 
+    // Partial label wildcards
+    wd_match_test("*ww.google.com", "www.google.com", WD_MATCH);
+    wd_match_test("w*w.google.com", "www.google.com", WD_MATCH);
+    wd_match_test("ww*.google.com", "www.google.com", WD_MATCH);
+    wd_match_test("www.*oogle.com", "www.google.com", WD_MATCH);
+    wd_match_test("www.*gle.com",   "www.google.com", WD_MATCH);
+    wd_match_test("www.goo*le.com", "www.google.com", WD_MATCH);
+    wd_match_test("www.goo*e.com",  "www.google.com", WD_MATCH);
+    wd_match_test("www.goo*.com",   "www.google.com", WD_MATCH);
+    wd_match_test("www.goog*e.com", "www.google.com", WD_MATCH);
+    wd_match_test("www.googl*.com", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.*om", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.**m", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.***", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.c**", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.c*m", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.**m", "www.google.com", WD_MATCH);
+    wd_match_test("www.google.*o*", "www.google.com", WD_MATCH);
+
+    // negative partial label wildcards
+    wd_match_test("www.google.*z",  "www.google.com", WD_NO_MATCH);
+    wd_match_test("www.googl*.zom", "www.google.com", WD_NO_MATCH);
+    wd_match_test("www.google*com", "www.google.com", WD_NO_MATCH);
+
     // Basic negative test cases
     wd_match_test("ttt.google.com", "www.google.com", WD_NO_MATCH);
     wd_match_test("www.tttttt.com", "www.google.com", WD_NO_MATCH);
@@ -62,7 +86,18 @@ main(void)
     wd_match_test("www.google.com", NULL,             WD_NO_MATCH);
     wd_match_test(NULL,             NULL,             WD_NO_MATCH);
 
-    // wild card matches across multiple labels
+    // special case of trailing wildcard
+    wd_match_test("*",               "www.google.com", WD_MATCH);
+    wd_match_test("w*",              "www.google.com", WD_MATCH);
+    wd_match_test("ww*",             "www.google.com", WD_MATCH);
+    wd_match_test("www*",            "www.google.com", WD_MATCH);
+    wd_match_test("www.*",           "www.google.com", WD_MATCH);
+    wd_match_test("www.g*",          "www.google.com", WD_MATCH);
+    wd_match_test("www.google*",     "www.google.com", WD_MATCH);
+    wd_match_test("www.google.*",    "www.google.com", WD_MATCH);
+    wd_match_test("www.google.c*",   "www.google.com", WD_MATCH);
+    wd_match_test("www.google.co*",  "www.google.com", WD_MATCH);
+    wd_match_test("www.google.com*", "www.google.com", WD_NO_MATCH); // ***
 
     return return_code;
 }
