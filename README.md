@@ -6,3 +6,6 @@ The ```*``` wildcard is non-greedy, up to a domain label (where domain labels ar
 There is an additional special case where a trailing ```*``` becomes a greedy match-anything including multiple labels.
 
 See the unit tests for clarifying examples.
+
+#### Q: Why not just use a regrex engine?
+A: The hope is that this will be simpler, lower overhead, and faster.
