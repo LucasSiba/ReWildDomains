@@ -11,10 +11,10 @@ CFLAGS   = -O2 -g -rdynamic \
 LDFLAGS  = 
 LDLIBS   = 
 
-SOURCES  = src/ReWildDomains.c
+SOURCES  = src/WildDomains.c
 TESTS    = test/test-use-cases.c
 
-all: src/ReWildDomains.o
+all: src/WildDomains.o
 
 test: all
 test: $(TESTS:.c=.t.pass)
