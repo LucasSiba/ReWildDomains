@@ -12,7 +12,7 @@ LDFLAGS  =
 LDLIBS   = 
 
 SOURCES  = src/WildDomains.c
-TESTS    = test/test-use-cases.c
+TESTS    = test/test-use-cases.c test/test-fuzzing.c
 
 all: src/WildDomains.o
 
